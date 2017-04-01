@@ -91,7 +91,7 @@
 }
 
 .App .App-content .App-content-movies .movie .movie-poster {
-  background-image: url("/imgs/movie-placeholder.jpg");
+  background-image: url("./imgs/movie-placeholder.jpg");
   width: 150px;
   height: 200px;
   background-position: center center;
