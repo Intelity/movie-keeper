@@ -2,7 +2,7 @@
   "name": "movie-keeper",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://Keypr.github.io/movie-keeper",
+  "homepage": "http://keypr.github.io/movie-keeper",
   "dependencies": {
     "flexbox-react": "^4.3.1",
     "muicss": "^0.9.12",
