@@ -164,3 +164,9 @@
 .App .overlay .add-movie-container .add-movie-form .mui-textfield>textarea:focus~label {
   color: #FF424F;
 }
+
+.fit {
+  object-fit: cover;
+  object-position: top;
+  width: 100%;
+}

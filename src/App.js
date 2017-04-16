@@ -36,7 +36,13 @@ class App extends Component {
         movies.push(
           <Flexbox key={`movie-${movieId}`} className="movie" flexDirection="column">
             <div className="movie-rating">{movie.rating}</div>
-            <Flexbox className="movie-poster"></Flexbox>
+            <Flexbox className="movie-poster">
+              {movie.poster &&
+                <img src={movie.poster}
+                     className="fit"
+                     alt={movie.title}/>
+              }
+            </Flexbox>
             <Flexbox className="movie-title" flexDirection="row">
               {movie.title}
             </Flexbox>

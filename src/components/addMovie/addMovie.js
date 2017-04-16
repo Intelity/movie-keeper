@@ -48,7 +48,7 @@ class AddMovie extends Component {
       params: {
         api_key: 'd4b2e5e0e5a46c592a05101bdc4d70fe',
         page: 1,
-        query: update[type],
+        query: update.title,
       }
     })
     .then((response) => {
@@ -59,10 +59,10 @@ class AddMovie extends Component {
       const movie = (response.data.results.length > 0) ? response.data.results[0] : false;
 
       if (movie) {
-        update[year]      = (movie.release_date) ? movie.release_date.split("-")[0] : "";
-        update[director]  = (movie.director) ? movie.director : "No director in DB";
-        update[rating]    = (movie.vote_average) ? movie.vote_average * 5 / 10 : 0;
-        update[poster]    = (movie.poster_path) ? 'http://image.tmdb.org/t/p/w185/' + movie.poster_path : 0;
+        update.year      = (movie.release_date) ? movie.release_date.split("-")[0] : "";
+        update.director  = (movie.director) ? movie.director : "No director in DB";
+        update.rating    = (movie.vote_average) ? movie.vote_average * 5 / 10 : 0;
+        update.poster    = (movie.poster_path) ? 'http://image.tmdb.org/t/p/w185/' + movie.poster_path : 0;
 
         this.setState({
           addMovie: Object.assign({}, this.state.addMovie, update)
