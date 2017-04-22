@@ -6,33 +6,57 @@ import Form from 'muicss/lib/react/form';
 import Input from 'muicss/lib/react/input';
 import Button from 'muicss/lib/react/button';
 import Rating from 'react-rating';
+import MovieSelect from 'movie-keeper-movie-select';
+
+import './movie-select-theme.css';
 
 export default
 class MovieAddOverlay extends Component {
+
+  constructor (...args)
+  {
+    super(...args);
+
+    this.state = {
+      title: '',
+      director: '',
+      year: '',
+      rating: 0
+    };
+  }
+
+  handleMovieSelect(movie)
+  {
+    this.setState({
+      director: movie.Director,
+      year: movie.Released,
+      rating: Math.floor((parseFloat(movie.imdbRating) / 10) * 5),
+      title: movie.Title
+    });
+  }
+
   render() {
     const { onSubmitMovie, onClose } = this.props;
 
-    let currentModel = {
-      title: 'No title',
-      director: '',
-      year: 0,
-      rating: 0
-    };
-
-    const updateAttr = field => ({ currentTarget: { value } }) => currentModel[field] = value;
+    const updateState = field => ({ currentTarget: { value } }) => this.setState({ [field]: value });
 
     return <Flexbox className="overlay">
       <Flexbox className="add-movie-container">
-        <Form onSubmit={preventAndCall(onSubmitMovie, currentModel)} className="add-movie-form">
+        <Form onSubmit={preventAndCall(onSubmitMovie, this.state)} className="add-movie-form">
           <legend>Add Movie</legend>
 
-          <Input ref="title" label="Title" floatingLabel={true} onChange={updateAttr('title')}/>
-          <Input ref="director" label="Director" floatingLabel={true} onChange={updateAttr('director')}/>
-          <Input ref="year" label="Year of Release" floatingLabel={true} onChange={updateAttr('year')}/>
+          <MovieSelect
+            value={this.state.title}
+            onMovieSelected={ this.handleMovieSelect.bind(this) }
+            placeholder="Type movie title" />
+          <Input ref="director" value={this.state.director}
+                 label="Director" floatingLabel={true} onChange={updateState('director')}/>
+          <Input ref="year" value={this.state.year}
+                 label="Year of Release" floatingLabel={true} onChange={updateState('year')}/>
 
           <div className="mui-textfield" style={{marginBottom: 0}}>
             <div style={{marginBottom: 15}}>Rating</div>
-            <Rating onClick={rating => currentModel.rating = rating } />
+            <Rating onClick={rating => this.setState({ rating }) } initialRate={this.state.rating} />
           </div>
 
           <div style={{textAlign: 'right'}}>
