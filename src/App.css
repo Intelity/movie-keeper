@@ -7,6 +7,7 @@
   height: 50px;
   color: white;
   position: relative;
+  align-items: center;
 }
 
 .App .App-header .App-brand {
@@ -27,22 +28,6 @@
   position: relative;
   top: 5px;
   margin-right: 8px;
-}
-
-.App .App-header .add-movie {
-  position: absolute;
-  right: 60px;
-  bottom: -22px;
-  display: inline-block;
-  width: 44px;
-  height: 44px;
-  border-radius: 22px;
-  background-color: white;
-}
-
-.App .App-header .add-movie i.material-icons {
-  position: relative;
-  top: 10px;
 }
 
 .App .App-menu {
@@ -126,41 +111,4 @@
   bottom: 0;
   top: 0;
   background-color: rgba(45, 45, 45, 0.8);
-}
-
-.App .overlay .add-movie-container {
-  position: absolute;
-  width: 500px;
-  height: 400px;
-  top: 50%;
-  left: 50%;
-  margin-left: -260px;
-  margin-top: -210px;
-  background-color: white;
-  border-radius: 15px;
-  padding: 20px;
-  color: #222;
-}
-
-.App .overlay .add-movie-container .add-movie-form {
-  width: 100%;
-  text-align: left;
-}
-
-.App .overlay .add-movie-container .add-movie-form legend {
-  text-align: center;
-}
-
-.App .overlay .add-movie-container .add-movie-form .mui-textfield--float-label>label {
-  overflow: hidden;
-}
-
-.App .overlay .add-movie-container .add-movie-form .mui-textfield>input:focus,
-.App .overlay .add-movie-container .add-movie-form .mui-textfield>textarea:focus {
-  border-color: #FF424F;
-}
-
-.App .overlay .add-movie-container .add-movie-form .mui-textfield>input:focus~label,
-.App .overlay .add-movie-container .add-movie-form .mui-textfield>textarea:focus~label {
-  color: #FF424F;
 }
