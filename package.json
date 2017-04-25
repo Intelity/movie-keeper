@@ -8,7 +8,8 @@
     "muicss": "^0.9.12",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "react-rating": "^0.6.5"
+    "react-rating": "^0.6.5",
+    "axios": "^0.16.1"
   },
   "devDependencies": {
     "gh-pages": "^0.12.0",
