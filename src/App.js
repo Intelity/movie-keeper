@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
 import Flexbox from 'flexbox-react';
-import Form from 'muicss/lib/react/form';
-import Input from 'muicss/lib/react/input';
-import Button from 'muicss/lib/react/button';
-import Rating from 'react-rating';
+
+import AddMovie from 'add-movie';
 
 import './App.css';
+
+const API_KEY = '47590791dee4431dc25780ee10a52ba6';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       movies: {},
-      showAddMovie: false,
-      addMovie: {},
     };
   }
 
@@ -24,37 +22,12 @@ class App extends Component {
     });
   }
 
-  addMovie() {
-    this.setState({
-      showAddMovie: true,
-    });
-  }
-
-  addAttr(type, obj) {
-    const update = {};
-    update[type] = obj.currentTarget.value;
-    this.setState({
-      addMovie: Object.assign({}, this.state.addMovie, update)
-    });
-  }
-
-  setRating(rating) {
-    this.addAttr('rating', {
-      currentTarget: {
-        value: rating,
-      },
-    });
-  }
-
-  submitNewMovie(e) {
-    e.preventDefault();
+  addMovie(movie) {
     const updateMovie = {};
-    updateMovie[Object.keys(this.state.movies).length + 1] = this.state.addMovie;
+    updateMovie[Object.keys(this.state.movies).length + 1] = movie;
     const movies = Object.assign({}, this.state.movies, updateMovie);
     this.setState({
       movies: movies,
-      addMovie: {},
-      showAddMovie: false,
     });
     window.localStorage.setItem('movie-collection', JSON.stringify({
       movies: movies
@@ -98,15 +71,7 @@ class App extends Component {
               <span>Movie Keeper</span>
             </div>
           </Flexbox>
-          <a href="#add"
-            className="add-movie"
-            onClick={(e) => {
-              e.preventDefault();
-              this.addMovie();
-            }}
-          >
-            <i className="material-icons">add</i>
-          </a>
+          <AddMovie onAddMovie={this.addMovie.bind(this)} movies={this.state.movies} apiKey={API_KEY} />
         </Flexbox>
         <Flexbox flexGrow={1} flexDirection="row">
           <Flexbox className="App-menu" flexDirection="column">
@@ -122,40 +87,6 @@ class App extends Component {
             <Flexbox className="App-content-movies" flexDirection="row" flexWrap="wrap">
               {movies}
             </Flexbox>
-          </Flexbox>
-        </Flexbox>
-        <Flexbox className="overlay" style={{display: (this.state.showAddMovie === true ? 'flex' : 'none')}}>
-          <Flexbox className="add-movie-container">
-            <Form
-              onSubmit={this.submitNewMovie.bind(this)}
-              className="add-movie-form"
-            >
-              <legend>Add Movie</legend>
-              <Input ref="title" label="Title" floatingLabel={true} onChange={this.addAttr.bind(this, 'title')} />
-              <Input ref="director" label="Director" floatingLabel={true} onChange={this.addAttr.bind(this, 'director')} />
-              <Input ref="year" label="Year of Release" floatingLabel={true} onChange={this.addAttr.bind(this, 'year')} />
-              <div className="mui-textfield" style={{marginBottom: 0}}>
-                <div style={{marginBottom: 15}}>Rating</div>
-                <Rating
-                  initialRate={this.state.addMovie.rating || 0}
-                  onClick={this.setRating.bind(this)}
-                />
-              </div>
-              <div style={{textAlign: 'right'}}>
-                <Button
-                  variant="flat"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    this.setState({
-                      showAddMovie: false,
-                    });
-                  }}
-                >
-                  Cancel
-                </Button>
-                <Button variant="flat" color="primary">Submit</Button>
-              </div>
-            </Form>
           </Flexbox>
         </Flexbox>
       </Flexbox>
