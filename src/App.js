@@ -7,8 +7,6 @@ import MovieList from './components/movieList';
 import { MovieAddOverlay } from 'movie-keeper-movie-select';
 import * as MovieStorage from './storages/movie';
 
-console.log(MovieAddOverlay);
-
 class App extends Component {
   constructor(props) {
     super(props);
