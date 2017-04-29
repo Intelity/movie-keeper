@@ -4,8 +4,10 @@ import './App.css';
 
 import AppLayout from './AppLayout';
 import MovieList from './components/movieList';
-import MovieAddOverlay from './components/movieAdd';
+import { MovieAddOverlay } from 'movie-keeper-movie-select';
 import * as MovieStorage from './storages/movie';
+
+console.log(MovieAddOverlay);
 
 class App extends Component {
   constructor(props) {
