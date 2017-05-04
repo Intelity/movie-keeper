@@ -5,6 +5,7 @@ import Input from 'muicss/lib/react/input';
 import Button from 'muicss/lib/react/button';
 import Rating from 'react-rating';
 import { getMovie } from '../../api/movieApi';
+import { debounce } from '../../util/helper';
 import { AutocompleteComponent } from '../autocomplete/Autocomplete.component';
 import './AddMovie.component.css';
 
@@ -23,7 +24,7 @@ class AddMovieComponent extends Component {
   }
 
   componentDidMount() {
-    this.getMoviesByApi('007');
+    debounce(this.getMoviesByApi, 300)('007');
   }
 
   handleAddAttr(type, obj) {
@@ -56,7 +57,7 @@ class AddMovieComponent extends Component {
     return parseInt(rawRating * 5 / 10);
   }
 
-  getMoviesByApi(title) {
+  getMoviesByApi = (title) => {
     getMovie(title).then(response => {
       if (!response) {
         this.setState({
@@ -80,7 +81,7 @@ class AddMovieComponent extends Component {
         throw error;
       }
     });
-  }
+  };
 
   renderAutocomplete() {
     return (
