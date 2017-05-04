@@ -21,6 +21,11 @@
   color: #222;
 }
 
+.App .overlay .add-movie-container .autocomplete {
+  width: 100%;
+  text-align: left;
+}
+
 .App .overlay .add-movie-container .add-movie-form {
   width: 100%;
   text-align: left;

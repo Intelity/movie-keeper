@@ -59,7 +59,9 @@ class MoviesComponent extends Component {
 
       return (
         <Flexbox className="movie" key={`movie-${movieId}`} flexDirection="column">
-          <div className="movie-rating">{movie.rating}</div>
+          <div className="movie-rating">
+            {movie.rating}
+          </div>
           <Flexbox className="movie-poster"/>
           <Flexbox className="movie-title" flexDirection="row">
             {movie.title}
