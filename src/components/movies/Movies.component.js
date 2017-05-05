@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Flexbox from 'flexbox-react';
-import { AddMovieComponent } from '../addMovie/AddMovie.component';
+// import { AddMovieComponent } from '../addMovie/AddMovie.component';
+import { AddMovieComponent } from 'movie-keeper-add-movie-component/lib/index';
 import './Movies.component.css';
 
 
