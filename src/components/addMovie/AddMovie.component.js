@@ -4,8 +4,6 @@ import Form from 'muicss/lib/react/form';
 import Input from 'muicss/lib/react/input';
 import Button from 'muicss/lib/react/button';
 import Rating from 'react-rating';
-import { getMovie } from '../../api/movieApi';
-import { debounce } from '../../util/helper';
 import { AutocompleteComponent } from '../autocomplete/Autocomplete.component';
 import './AddMovie.component.css';
 
@@ -21,10 +19,6 @@ class AddMovieComponent extends Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
-  }
-
-  componentDidMount() {
-    debounce(this.getMoviesByApi, 300)('007');
   }
 
   handleAddAttr(type, obj) {
@@ -53,43 +47,37 @@ class AddMovieComponent extends Component {
     this.props.handleAddNewMovie(this.state.movie);
   }
 
-  calcRating(rawRating) {
-    return parseInt(rawRating * 5 / 10);
-  }
+  setMovie = (movie) => {
+    this.setState({
+      movie
+    })
+  };
 
-  getMoviesByApi = (title) => {
-    getMovie(title).then(response => {
-      if (!response) {
-        this.setState({
-          movie: {}
-        });
-        return;
-      }
+  renderControls = () => {
 
-      try {
-        const movieRaw = JSON.parse(response);
-        const movie = {
-          title: movieRaw.Title,
-          director: movieRaw.Director,
-          year: movieRaw.Year,
-          rating: this.calcRating(movieRaw.imdbRating),
-        };
-        this.setState({
-          movie
-        });
-      } catch (error) {
-        throw error;
-      }
-    });
   };
 
   renderAutocomplete() {
     return (
       <div className="autocomplete">
-        {this.state.moviesFromResponse}
+        Search movie
+        <AutocompleteComponent setMovie={this.setMovie}/>
       </div>
     );
   }
+
+  renderFooter = () => {
+    return (
+      <div style={{textAlign: 'right'}}>
+        <Button variant="flat" onClick={this.handleCancel}>
+          Cancel
+        </Button>
+        <Button variant="flat" color="primary">
+          Submit
+        </Button>
+      </div>
+    );
+  };
 
   render() {
     return (
@@ -123,14 +111,7 @@ class AddMovieComponent extends Component {
               <Rating initialRate={this.state.movie.rating || 0}
                       onClick={this.handleSetRating.bind(this)}/>
             </div>
-            <div style={{textAlign: 'right'}}>
-              <Button variant="flat" onClick={this.handleCancel}>
-                Cancel
-              </Button>
-              <Button variant="flat" color="primary">
-                Submit
-              </Button>
-            </div>
+            {this.renderFooter()}
           </Form>
         </Flexbox>
       </Flexbox>
