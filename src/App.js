@@ -1,19 +1,15 @@
 import React, { Component } from 'react';
 import Flexbox from 'flexbox-react';
-import Form from 'muicss/lib/react/form';
-import Input from 'muicss/lib/react/input';
-import Button from 'muicss/lib/react/button';
-import Rating from 'react-rating';
 
 import './App.css';
+import AddMovie from 'movie-finder';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       movies: {},
-      showAddMovie: false,
-      addMovie: {},
+      showAddMovie: false
     };
   }
 
@@ -24,36 +20,24 @@ class App extends Component {
     });
   }
 
-  addMovie() {
+  showAddMovie() {
     this.setState({
       showAddMovie: true,
     });
   }
 
-  addAttr(type, obj) {
-    const update = {};
-    update[type] = obj.currentTarget.value;
-    this.setState({
-      addMovie: Object.assign({}, this.state.addMovie, update)
-    });
+  hideAddMovie() {
+      this.setState({
+          showAddMovie: false
+      });
   }
 
-  setRating(rating) {
-    this.addAttr('rating', {
-      currentTarget: {
-        value: rating,
-      },
-    });
-  }
-
-  submitNewMovie(e) {
-    e.preventDefault();
+  submitNewMovie(movie) {
     const updateMovie = {};
-    updateMovie[Object.keys(this.state.movies).length + 1] = this.state.addMovie;
+    updateMovie[Object.keys(this.state.movies).length + 1] = movie;
     const movies = Object.assign({}, this.state.movies, updateMovie);
     this.setState({
       movies: movies,
-      addMovie: {},
       showAddMovie: false,
     });
     window.localStorage.setItem('movie-collection', JSON.stringify({
@@ -102,7 +86,7 @@ class App extends Component {
             className="add-movie"
             onClick={(e) => {
               e.preventDefault();
-              this.addMovie();
+              this.showAddMovie();
             }}
           >
             <i className="material-icons">add</i>
@@ -124,38 +108,14 @@ class App extends Component {
             </Flexbox>
           </Flexbox>
         </Flexbox>
+
         <Flexbox className="overlay" style={{display: (this.state.showAddMovie === true ? 'flex' : 'none')}}>
           <Flexbox className="add-movie-container">
-            <Form
-              onSubmit={this.submitNewMovie.bind(this)}
-              className="add-movie-form"
-            >
-              <legend>Add Movie</legend>
-              <Input ref="title" label="Title" floatingLabel={true} onChange={this.addAttr.bind(this, 'title')} />
-              <Input ref="director" label="Director" floatingLabel={true} onChange={this.addAttr.bind(this, 'director')} />
-              <Input ref="year" label="Year of Release" floatingLabel={true} onChange={this.addAttr.bind(this, 'year')} />
-              <div className="mui-textfield" style={{marginBottom: 0}}>
-                <div style={{marginBottom: 15}}>Rating</div>
-                <Rating
-                  initialRate={this.state.addMovie.rating || 0}
-                  onClick={this.setRating.bind(this)}
-                />
-              </div>
-              <div style={{textAlign: 'right'}}>
-                <Button
-                  variant="flat"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    this.setState({
-                      showAddMovie: false,
-                    });
-                  }}
-                >
-                  Cancel
-                </Button>
-                <Button variant="flat" color="primary">Submit</Button>
-              </div>
-            </Form>
+              { this.state.showAddMovie &&
+                  <AddMovie
+                      onCancel={() => this.hideAddMovie()}
+                      onConfirm={(movie) => this.submitNewMovie(movie)}
+                  /> }
           </Flexbox>
         </Flexbox>
       </Flexbox>

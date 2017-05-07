@@ -5,6 +5,7 @@
   "homepage": "http://keypr.github.io/movie-keeper",
   "dependencies": {
     "flexbox-react": "^4.3.1",
+    "movie-finder": "screamy/movie-finder",
     "muicss": "^0.9.12",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
