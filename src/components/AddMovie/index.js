@@ -11,7 +11,7 @@ import AddMovie from "./AddMovie";
 
 const mapStateToProps = (state, ownProps) => {
 	const movie = {
-		title: selectors.getNewMovieDirector(state),
+		title: selectors.getNewMovieTitle(state),
 		director: selectors.getNewMovieDirector(state),
 		year: selectors.getNewMovieYear(state),
 		rating: selectors.getNewMovieRating(state)
