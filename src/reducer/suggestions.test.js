@@ -1,7 +1,7 @@
 import {
 	REQUEST_SUGGESTIONS,
 	RECEIVE_SUGGESTIONS
-} from "../Autosuggest/actionTypes";
+} from "../actionTypes/autosuggest";
 import reducer, { selectors } from "./suggestions";
 
 describe("suggestions reducer", () => {
