@@ -3,10 +3,10 @@ import {
 	EDIT_NEW_MOVIE_DIRECTOR,
 	EDIT_NEW_MOVIE_YEAR,
 	EDIT_NEW_MOVIE_RATING
-} from "../action-creators";
-import reducer, { selectors } from "./ui";
+} from "../actionTypes";
+import reducer, { selectors } from "./newMovie";
 
-describe("AddMovie reducer", () => {
+describe("newMovie reducer", () => {
 	it("updates the title", () => {
 		const state = reducer(undefined, {
 			type: EDIT_NEW_MOVIE_TITLE,

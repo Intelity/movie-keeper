@@ -1,22 +1,14 @@
 import { combineReducers } from "redux";
-import ui, { selectors as fromUI } from "./ui";
+import globalizeSelectors from "../utils/globalizeSelectors";
+import newMovie, { selectors as fromNewMovie } from "./newMovie";
+import suggestions, { selectors as fromSuggestions } from "./suggestions";
 
 export default combineReducers({
-	ui
+	newMovie,
+	suggestions
 });
 
-const globalizeSelector = (field, selector) => (state, ...args) =>
-	selector(state[field], ...args);
-
-const globalizeSelectors = (field, selectors) =>
-	Object.keys(selectors).reduce((globalized, selectorName) => {
-		globalized[selectorName] = globalizeSelector(
-			field,
-			selectors[selectorName]
-		);
-		return globalized;
-	}, {});
-
 export const selectors = {
-	...globalizeSelectors("ui", fromUI)
+	...globalizeSelectors("newMovie", fromNewMovie),
+	...globalizeSelectors("suggestions", fromSuggestions)
 };
