@@ -1,10 +1,12 @@
 import { connect } from "react-redux";
+
 import {
 	editNewMovieTitle,
 	editNewMovieDirector,
 	editNewMovieYear,
 	editNewMovieRating
-} from "../../actionCreators";
+} from "../../../../actionCreators/addMovie";
+
 import Suggestion from "./Suggestion";
 
 const mapDispatchToProps = dispatch => ({

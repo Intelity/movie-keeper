@@ -3,7 +3,7 @@ import { createReducer } from "redux-create-reducer";
 import {
 	REQUEST_SUGGESTIONS,
 	RECEIVE_SUGGESTIONS
-} from "../Autosuggest/actionTypes";
+} from "../actionTypes/autosuggest";
 
 const initialState = {};
 

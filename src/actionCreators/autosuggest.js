@@ -1,7 +1,8 @@
 import debounce from "lodash.debounce";
-import { selectors } from "../reducer";
 
-import { REQUEST_SUGGESTIONS, RECEIVE_SUGGESTIONS } from "./actionTypes";
+import { selectors } from "../reducer";
+import { REQUEST_SUGGESTIONS, RECEIVE_SUGGESTIONS } from "../actionTypes/autosuggest";
+
 import { imdbRatingToFiveStar } from "./utils";
 
 const API_KEY = "BanMePlz";

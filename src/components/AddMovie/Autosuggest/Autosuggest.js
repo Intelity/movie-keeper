@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ReactAutosuggest from "react-autosuggest";
-import Suggestion from "./Suggestion/";
+
+import Suggestion from "./Suggestion";
 import "./Autosuggest.css";
 
 const noop = () => {};

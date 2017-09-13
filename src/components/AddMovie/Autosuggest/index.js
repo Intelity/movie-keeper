@@ -1,12 +1,14 @@
 import { connect } from "react-redux";
-import { selectors } from "../reducer/";
+
+import { selectors } from "../../../reducer";
 import {
 	editNewMovieTitle,
 	editNewMovieDirector,
 	editNewMovieYear,
 	editNewMovieRating
-} from "../actionCreators";
-import { fetchSuggestions } from "./actionCreators";
+} from "../../../actionCreators/addMovie";
+import { fetchSuggestions } from "../../../actionCreators/autosuggest";
+
 import Autosuggest from "./Autosuggest";
 
 const mapStateToProps = state => {

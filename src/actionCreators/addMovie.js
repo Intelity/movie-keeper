@@ -3,7 +3,7 @@ import {
 	EDIT_NEW_MOVIE_DIRECTOR,
 	EDIT_NEW_MOVIE_YEAR,
 	EDIT_NEW_MOVIE_RATING
-} from "./actionTypes";
+} from "../actionTypes/addMovie";
 
 export const editNewMovieTitle = title => ({
 	type: EDIT_NEW_MOVIE_TITLE,

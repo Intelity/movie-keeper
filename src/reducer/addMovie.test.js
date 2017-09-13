@@ -4,9 +4,9 @@ import {
 	EDIT_NEW_MOVIE_YEAR,
 	EDIT_NEW_MOVIE_RATING
 } from "../actionTypes";
-import reducer, { selectors } from "./newMovie";
+import reducer, { selectors } from "./addMovie";
 
-describe("newMovie reducer", () => {
+describe("addMovie reducer", () => {
 	it("updates the title", () => {
 		const state = reducer(undefined, {
 			type: EDIT_NEW_MOVIE_TITLE,
