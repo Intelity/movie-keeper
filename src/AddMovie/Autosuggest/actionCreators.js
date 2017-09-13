@@ -39,7 +39,7 @@ const doFetchSuggestions = debounce((title, dispatch) => {
 				dispatch(receiveSuggestions(title, []));
 			}
 		});
-}, 100);
+}, 200);
 
 export const fetchSuggestions = title => (dispatch, getState) => {
 	const state = getState(),
