@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const SetValueButton = ({ value, onSetValue, className }) => {
+const SetMovieFieldButton = ({ value, onSetValue, className }) => {
 	const onClick = e => {
 		e.stopPropagation();
 		onSetValue(value);
@@ -26,21 +26,21 @@ const Suggestion = ({
 		<span>
 			<span className={`suggestion-set-all`}>{title}</span>
 			{director ? (
-				<SetValueButton
+				<SetMovieFieldButton
 					value={director}
 					onSetValue={onEditDirector}
 					className={`suggestion-set-director`}
 				/>
 			) : null}
 			{year ? (
-				<SetValueButton
+				<SetMovieFieldButton
 					value={year}
 					onSetValue={onEditYear}
 					className={`suggestion-set-year`}
 				/>
 			) : null}
 			{rating ? (
-				<SetValueButton
+				<SetMovieFieldButton
 					value={rating}
 					onSetValue={onEditRating}
 					className={`suggestion-set-rating`}

@@ -33,7 +33,7 @@ const Autosuggest = ({
 			getSuggestionValue={getSuggestionValue}
 			renderSuggestion={renderSuggestion}
 			inputProps={{
-				value: title,
+				value: title || "",
 				onChange
 			}}
 			shouldRenderSuggestions={shouldRenderSuggestions}

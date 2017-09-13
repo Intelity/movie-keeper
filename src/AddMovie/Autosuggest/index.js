@@ -10,10 +10,11 @@ import { fetchSuggestions } from "./actionCreators";
 import Autosuggest from "./Autosuggest";
 
 const mapStateToProps = state => {
-	const title = selectors.getNewMovieTitle(state) || '';
+	const title = selectors.getNewMovieTitle(state),
+		suggestions = selectors.getSuggestions(state, title);
 	return {
 		title,
-		suggestions: selectors.getSuggestions(state, title)
+		suggestions
 	};
 };
 
