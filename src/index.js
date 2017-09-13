@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { createStore } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
+import thunk from "redux-thunk";
 import { createProvider } from "react-redux";
 import reducer from "./AddMovie/reducer/";
 import App from "./App";
@@ -10,7 +11,11 @@ const Provider = createProvider();
 const store = createStore(
 	reducer,
 	undefined,
-	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+	compose(
+		applyMiddleware(thunk),
+		window.__REDUX_DEVTOOLS_EXTENSION__ &&
+			window.__REDUX_DEVTOOLS_EXTENSION__()
+	)
 );
 
 ReactDOM.render(

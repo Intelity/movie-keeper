@@ -1,24 +1,21 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Flexbox from "flexbox-react";
 import Form from "muicss/lib/react/form";
 import Input from "muicss/lib/react/input";
 import Button from "muicss/lib/react/button";
 import Rating from "react-rating";
+import Autosuggest from "./Autosuggest";
 
 class AddMovie extends Component {
   static propTypes = {
     onSubmit: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired,
-    title: PropTypes.string,
     director: PropTypes.string,
     year: PropTypes.number,
-    rating: PropTypes.number
-  };
-
-  onEditTitle = e => {
-    const title = e.target.value;
-    this.props.onEditTitle(title || null);
+    rating: PropTypes.number,
+    onEditDirector: PropTypes.func.isRequired,
+    onEditYear: PropTypes.func.isRequired,
+    onEditRating: PropTypes.func.isRequired
   };
 
   onEditDirector = e => {
@@ -36,33 +33,26 @@ class AddMovie extends Component {
   onSubmit = e => {
     e.preventDefault();
     this.props.onSubmit();
-  }
+  };
 
   render() {
-    const { title, director, year, rating, onEditRating, onCancel } = this.props;
-    const { onEditTitle, onEditDirector, onEditYear, onSubmit } = this;
+    const { director, year, rating, onEditRating, onCancel } = this.props;
+    const { onEditDirector, onEditYear, onSubmit } = this;
     return (
-      <Form
-        onSubmit={onSubmit}
-        className="add-movie-form"
-      >
+      <Form onSubmit={onSubmit} className="add-movie-form">
         <legend>Add Movie</legend>
-        <Input
-          ref="title"
-          label="Title"
-          floatingLabel={true}
-          value={title || ""}
-          onChange={this.onEditTitle}
+        <Autosuggest
+          renderInputComponent={inputProps => (
+            <Input {...inputProps} label="Title" floatingLabel={true} />
+          )}
         />
         <Input
-          ref="director"
           label="Director"
           floatingLabel={true}
           value={director || ""}
           onChange={onEditDirector}
         />
         <Input
-          ref="year"
           label="Year of Release"
           floatingLabel={true}
           value={year || ""}

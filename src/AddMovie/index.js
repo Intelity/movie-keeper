@@ -1,18 +1,15 @@
-import React from "react";
-import { createProvider, connect } from "react-redux";
-import AddMovie from "./AddMovie";
+import { connect } from "react-redux";
 import { selectors } from "./reducer/";
-
 import {
-	editNewMovieTitle,
 	editNewMovieDirector,
 	editNewMovieYear,
 	editNewMovieRating
-} from "./action-creators/";
+} from "./actionCreators";
+import AddMovie from "./AddMovie";
 
 const mapStateToProps = (state, ownProps) => {
 	const movie = {
-		title: selectors.getNewMovieTitle(state),
+		title: selectors.getNewMovieDirector(state),
 		director: selectors.getNewMovieDirector(state),
 		year: selectors.getNewMovieYear(state),
 		rating: selectors.getNewMovieRating(state)
@@ -24,7 +21,6 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-	onEditTitle: title => dispatch(editNewMovieTitle(title)),
 	onEditDirector: director => dispatch(editNewMovieDirector(director)),
 	onEditYear: year => dispatch(editNewMovieYear(year)),
 	onEditRating: rating => dispatch(editNewMovieRating(rating))
